@@ -1,0 +1,32 @@
+.Follow {
+    background: #ffffff;
+    border-radius: 14px;
+    border: 1px solid #e5e7eb;
+    padding: 14px;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+}
+
+.Follow img {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid #d1d5db;
+}
+
+.Follow > div:nth-of-type(1) {
+    font-size: 15px;
+    font-weight: 600;
+    color: #1f2937;
+    flex-grow: 1;
+}
+
+.Follow button {
+    font-size: 13px;
+    padding: 6px 12px;
+    border-radius: 8px;
+}

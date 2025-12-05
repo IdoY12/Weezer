@@ -1,0 +1,26 @@
+Weezer – Quick Start
+
+A full-stack social platform running with Docker Compose.
+
+Start the project: 
+docker compose up
+
+This starts all services:
+backend · frontend · mysql · localstack · sockets
+
+
+Run a single service:
+
+docker compose up backend  
+docker compose up frontend  
+docker compose up mysql  
+docker compose up localstack  
+
+
+Config
+
+All environment variables and ports are defined in docker-compose.yml.
+
+Each service has its own Dockerfile (backend/, frontend/, io/, etc.).
+
+Services communicate internally using Docker service names (e.g., mysql, backend).

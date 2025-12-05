@@ -1,0 +1,28 @@
+import { NextFunction, Request, Response } from "express";
+import Comment from "../../models/Comment";
+import User from "../../models/User";
+import socket from "../../io/io";
+import SocketMessages from "socket-enums-idoyahav";
+
+export async function newComment(req: Request<{ postId: string }>, res: Response, next: NextFunction) {
+
+    try {
+
+        const { postId } = req.params
+        const { userId } = req
+        const newComment = await Comment.create({ ...req.body, userId, postId })
+        await newComment.reload({
+            include: [User]
+        })
+        res.json(newComment)
+        
+        socket.emit(SocketMessages.NewComment, {
+            from: req.get("x-client-id"),
+            postId: newComment.postId,
+            newComment
+        })
+    } catch (e) {
+        next(e)
+    }
+
+}

@@ -1,0 +1,38 @@
+.NewComment {
+    margin-top: 20px;
+    width: 100%;
+}
+
+.NewComment form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+}
+
+.NewComment textarea {
+    width: 100%;
+    min-height: 120px;
+    max-height: 250px;
+    resize: vertical;
+    padding: 14px;
+    border-radius: 12px;
+    border: 1px solid #d1d5db;
+    background: #ffffff;
+    font-size: 14px;
+    color: #1f2937;
+    box-sizing: border-box;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.NewComment textarea:focus {
+    border-color: #6366f1;
+    box-shadow: 0 0 0 3px rgba(99,102,241,0.15);
+}
+
+.formError {
+    color: #ef4444;
+    font-size: 13px;
+    margin-top: -8px;
+}

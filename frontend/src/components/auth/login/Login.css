@@ -1,0 +1,103 @@
+.Login {
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    place-items: center;
+    background: linear-gradient(135deg, #e3e8ff 0%, #f9fbff 100%);
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.Login form {
+    width: 100%;
+    max-width: 420px;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    padding: 46px 40px;
+    background: rgba(255, 255, 255, 0.82);
+    border-radius: 28px;
+    backdrop-filter: blur(22px);
+    border: 1px solid rgba(210, 215, 255, 0.55);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.06);
+}
+
+.Login input {
+    width: 100%;
+    padding: 16px 18px;
+    box-sizing: border-box;
+    border-radius: 16px;
+    border: 1px solid #cdd3dd;
+    background: #ffffff;
+    font-size: 16px;
+    color: #1e293b;
+    transition: border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+}
+
+.Login input:hover {
+    background: #f8f9ff;
+}
+
+.Login input:focus {
+    border-color: #4f46e5;
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2);
+    outline: none;
+}
+
+.Login button {
+    width: 100%;
+    padding: 15px 0;
+    border-radius: 16px;
+    border: none;
+    background: linear-gradient(135deg, #6366f1, #4f46e5);
+    color: white;
+    font-size: 17px;
+    font-weight: 600;
+    cursor: pointer;
+    transform: translateY(0);
+    transition: transform 0.15s ease, box-shadow 0.25s ease, background 0.25s ease;
+}
+
+.Login button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 26px rgba(79, 70, 229, 0.35);
+}
+
+.Login button:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 14px rgba(79, 70, 229, 0.25);
+}
+
+.error-box {
+    width: 100%;
+    background: #fee2e2;
+    color: #b91c1c;
+    padding: 12px 16px;
+    border-radius: 14px;
+    border: 1px solid #fecaca;
+    font-size: 14px;
+    margin-bottom: -8px;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+
+@media (max-width: 480px) {
+    .Login form {
+        padding: 34px 26px;
+        border-radius: 22px;
+        max-width: 360px;
+        gap: 18px;
+    }
+
+    .Login input {
+        padding: 14px 16px;
+        font-size: 15px;
+    }
+
+    .Login button {
+        padding: 13px 0;
+        font-size: 16px;
+        border-radius: 14px;
+    }
+}

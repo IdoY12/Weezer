@@ -1,0 +1,13 @@
+.Followers {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.Followers h3 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 700;
+    color: #111827;
+    padding-bottom: 4px;
+}

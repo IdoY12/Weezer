@@ -1,0 +1,50 @@
+.EditPost {
+    width: 100%;
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 24px 20px;
+}
+
+.EditPost form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.EditPost input[type="text"],
+.EditPost textarea {
+    width: 100%;
+    padding: 14px;
+    border-radius: 14px;
+    border: 1px solid #d1d5db;
+    background: #ffffff;
+    font-size: 15px;
+    color: #1f2937;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.EditPost input:focus,
+.EditPost textarea:focus {
+    outline: none;
+    border-color: #6366f1;
+    box-shadow: 0 0 0 3px rgba(99,102,241,0.2);
+}
+
+.EditPost textarea {
+    min-height: 140px;
+    resize: vertical;
+}
+
+.EditPost img {
+    width: 100%;
+    max-height: 240px;
+    object-fit: cover;
+    border-radius: 14px;
+    border: 1px solid #e5e7eb;
+}
+
+.formError {
+    font-size: 13px;
+    color: #dc2626;
+    margin-top: -6px;
+}

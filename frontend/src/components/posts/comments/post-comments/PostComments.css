@@ -1,0 +1,12 @@
+.PostComments {
+    margin-top: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.PostComments > div:first-of-type {
+    font-size: 14px;
+    font-weight: 600;
+    color: #4b5563;
+}

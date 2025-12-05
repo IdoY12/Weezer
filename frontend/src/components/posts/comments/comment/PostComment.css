@@ -1,0 +1,27 @@
+.PostComment {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    padding: 14px 18px;
+    border-radius: 14px;
+    margin-bottom: 14px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.PostComment:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.PostComment h6 {
+    margin: 0 0 8px 0;
+    font-size: 13px;
+    font-weight: 600;
+    color: #6b7280;
+}
+
+.PostComment div {
+    font-size: 15px;
+    color: #1f2937;
+    line-height: 1.5;
+}

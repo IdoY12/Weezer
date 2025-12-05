@@ -1,0 +1,9 @@
+.Profile {
+    width: 100%;
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 28px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+}

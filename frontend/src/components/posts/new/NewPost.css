@@ -1,0 +1,149 @@
+.NewPost {
+    width: 100%;
+    max-width: 560px;
+    margin: 40px auto;
+    padding: 40px 36px;
+    background: #ffffff;
+    border-radius: 28px;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.06);
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", sans-serif;
+    transition: box-shadow 0.25s ease;
+}
+
+.NewPost:hover {
+    box-shadow: 0 10px 34px rgba(0, 0, 0, 0.08);
+}
+
+.NewPost form {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+
+/* Modern Inputs / Textarea */
+.NewPost input[type="text"],
+.NewPost textarea,
+.NewPost input[type="file"] {
+    width: 100%;
+    padding: 16px 18px;
+    border-radius: 16px;
+    background: #f9fafb;
+    border: 1.8px solid #d3d7e0;
+    font-size: 16px;
+    line-height: 1.4;
+    color: #0f172a;
+    box-sizing: border-box;
+    transition: border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+    font-family: inherit;
+}
+
+/* Special outline for Title input */
+.NewPost input[type="text"] {
+    border-color: #c7d2fe;
+}
+
+/* Focus modern glow */
+.NewPost input[type="text"]:focus,
+.NewPost textarea:focus,
+.NewPost input[type="file"]:focus {
+    border-color: #6366f1;
+    background: #ffffff;
+    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.18);
+    outline: none;
+}
+
+/* Locked textarea (no stretching), scroll if long text */
+.NewPost textarea {
+    min-height: 150px;
+    resize: none; /* prevents drag resize */
+    width: 100%;
+    max-width: 100%;
+    overflow-y: auto; /* scrolls if text is long */
+}
+
+/* Error text */
+.formError {
+    font-size: 13px;
+    font-weight: 600;
+    color: #dc2626;
+    padding-left: 4px;
+    margin-top: -12px;
+}
+
+/* Image preview */
+.imagePreviewWrapper {
+    width: 100%;
+    height: 220px;
+    border-radius: 20px;
+    border: 1px solid #e5e7eb;
+    background: #f8fafc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.imagePreviewWrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.imagePreviewWrapper span {
+    color: #9ca3af;
+    font-size: 14px;
+}
+
+/* Button */
+.NewPost button,
+.NewPost .SpinnerButton button {
+    margin-top: 8px;
+    width: 100%;
+    padding: 14px 20px;
+    border-radius: 16px;
+    font-size: 15px;
+    font-weight: 600;
+    color: white;
+    background: linear-gradient(135deg, #2563eb, #3b82f6);
+    border: none;
+    box-shadow: 0 4px 14px rgba(37, 99, 235, 0.3);
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.NewPost button:hover,
+.NewPost .SpinnerButton button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 18px rgba(37, 99, 235, 0.35);
+}
+
+.NewPost button:active,
+.NewPost .SpinnerButton button:active {
+    transform: translateY(0);
+    box-shadow: 0 3px 10px rgba(37, 99, 235, 0.25);
+}
+
+.NewPost button:disabled,
+.NewPost .SpinnerButton button:disabled {
+    background: #cbd5e1;
+    box-shadow: none;
+    cursor: default;
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+    .NewPost {
+        padding: 28px 20px;
+        border-radius: 24px;
+    }
+
+    .NewPost input,
+    .NewPost textarea {
+        font-size: 15px;
+        padding: 14px 16px;
+    }
+
+    .imagePreviewWrapper {
+        height: 190px;
+    }
+}
