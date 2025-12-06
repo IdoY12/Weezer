@@ -3,7 +3,7 @@ Weezer – Quick Start
 A full-stack social platform running with Docker Compose.
 
 Start the project: 
-docker compose up
+docker compose up -d
 
 This starts all services:
 backend · frontend · mysql · localstack · sockets
