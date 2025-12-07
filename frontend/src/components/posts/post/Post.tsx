@@ -6,6 +6,7 @@ import { useAppDispatcher } from '../../../redux/hooks';
 import { deletePost } from '../../../redux/profile-slice';
 import useService from '../../../hooks/use-service';
 import ProfileService from '../../../services/auth-aware/ProfileService';
+import getImageUrl from '../../../hooks/use-image';
 
 interface PostProps {
     post: PostModel,
@@ -50,6 +51,8 @@ export default function Post(props: PostProps) {
         navigate(`/profile/edit/${id}`);
     }
 
+    const image = imageUrl ? getImageUrl(imageUrl) : '';
+
     const className = `Post ${isNew ? 'new-post' : ''}`;
 
     return (
@@ -57,7 +60,7 @@ export default function Post(props: PostProps) {
             <div><h3>{title}</h3></div>
             <div>{(new Date(createdAt)).toLocaleDateString()} by {name}</div>
             <div>{body}</div>
-            {imageUrl && <div><img src={`${import.meta.env.VITE_S3_URL}${imageUrl}`} /></div>}
+            {image && <div><img src={`${image}`} /></div>}
             {/* conditional rendering (render something depending on a boolean value):  */}
             {isEditAllowed && <div>
                 <button onClick={removeMe}>Delete</button><button onClick={editMe}>Edit</button>

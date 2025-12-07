@@ -9,6 +9,7 @@ import { useAppDispatcher, useAppSelector } from '../../../redux/hooks';
 import { init, updatePost } from '../../../redux/profile-slice';
 import useService from '../../../hooks/use-service';
 import ProfileService from '../../../services/auth-aware/ProfileService';
+import getImageUrl from '../../../hooks/use-image';
 
 export default function EditPost() {
 
@@ -59,6 +60,11 @@ export default function EditPost() {
                 setIsSubmitting(false);
             }
     }
+
+    useEffect(() => {
+        if (post) setImgSrc(getImageUrl(post.imageUrl));
+    }, [post]);
+
 
     return (
         <div className='EditPost'>

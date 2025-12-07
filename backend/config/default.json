@@ -13,7 +13,7 @@
         "database": "weezer"
     },
     "s3": {
-        "bucket": "shaharsol.images.weezer.com",
+        "bucket": "ido.images.weezer.com",
         "isLocalStack": true,
         "connection": {
             "endpoint": "http://localhost:4566",
