@@ -43,6 +43,7 @@ export function CheckoutForm() {
     return (
         <form onSubmit={handleSubmit}>
             <PaymentElement />
+            {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
             <button>
                 Pay
             </button>
