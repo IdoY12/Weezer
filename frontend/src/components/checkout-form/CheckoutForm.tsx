@@ -37,7 +37,6 @@ export function CheckoutForm() {
         if(stripeResponse.error) {
             setErrorMessage(stripeResponse.error.message!)
         }
-
     }
 
     return (

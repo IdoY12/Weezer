@@ -18,8 +18,8 @@ router.get('/google', passport.authenticate('google', {
 // Only after the user approves Google login,
 // Google redirects back here and this middleware is executed - and here we get the auth code
 router.get('/google/callback', 
-   // Passport exchanges the auth code for tokens
-  // and fetches the user's profile (email, id, etc.)
+   // Passport take the auth code from req.query.code and exchanges the auth code for tokens
+    // then Passport fetches the user's profile using the tokens (email, id, etc.)
   passport.authenticate('google', { 
     failureRedirect: '/login', 
     session: false
