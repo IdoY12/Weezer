@@ -29,41 +29,58 @@ export default function Login() {
 
     return (
         <div className='Login'>
-        <a href={import.meta.env.VITE_GOOGLE_SERVER_URL}>
-            <img src="https://img.icons8.com/?size=100&id=17949&format=png&color=000000" alt="" />
-            <br />
-            sign with google
-        </a>
-        <hr />
-            <form onSubmit={handleSubmit(submit)}>
+            <div className="login-container">
+                <div className="login-header">
+                    <h1>Welcome back</h1>
+                    <p>Sign in to your account to continue</p>
+                </div>
 
-                {errors.root?.message && (
-                    <div className="error-box">{errors.root.message}</div>
-                )}
+                <a href={import.meta.env.VITE_GOOGLE_SERVER_URL} className="google-sign-in">
+                    <img src="https://img.icons8.com/?size=100&id=17949&format=png&color=000000" alt="Google" />
+                    <span>Continue with Google</span>
+                </a>
 
-                <input
-                    placeholder='username'
-                    {...register('username', { required: "username is required" })}
-                />
-                {errors.username?.message && (
-                    <div className="error-box">{errors.username.message}</div>
-                )}
+                <div className="divider">
+                    <span>or</span>
+                </div>
 
-                <input
-                    placeholder='password'
-                    type="password"
-                    {...register('password', { required: "password is required" })}
-                />
-                {errors.password?.message && (
-                    <div className="error-box">{errors.password.message}</div>
-                )}
+                <form onSubmit={handleSubmit(submit)}>
+                    {errors.root?.message && (
+                        <div className="error-box">{errors.root.message}</div>
+                    )}
 
-                <SpinnerButton
-                    buttonText='Login'
-                    loadingText='logging in'
-                    isSubmitting={isSubmitting}
-                />
-            </form>
+                    <div className="input-group">
+                        <label htmlFor="username">Username</label>
+                        <input
+                            id="username"
+                            placeholder='Enter your username'
+                            {...register('username', { required: "username is required" })}
+                        />
+                        {errors.username?.message && (
+                            <div className="error-box">{errors.username.message}</div>
+                        )}
+                    </div>
+
+                    <div className="input-group">
+                        <label htmlFor="password">Password</label>
+                        <input
+                            id="password"
+                            placeholder='Enter your password'
+                            type="password"
+                            {...register('password', { required: "password is required" })}
+                        />
+                        {errors.password?.message && (
+                            <div className="error-box">{errors.password.message}</div>
+                        )}
+                    </div>
+
+                    <SpinnerButton
+                        buttonText='Sign in'
+                        loadingText='Signing in...'
+                        isSubmitting={isSubmitting}
+                    />
+                </form>
+            </div>
         </div>
     );
 }
