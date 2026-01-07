@@ -24,6 +24,7 @@ export default function Translations() {
 
             {!isPaying && 
                 <>
+                
                     <Elements stripe={stripePromise} options={{
                         mode: 'payment',
                         amount: 100,

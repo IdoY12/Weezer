@@ -1,9 +1,35 @@
+/* =====================================================
+   PROFILE PAGE
+   Post creation and user's posts list
+   ===================================================== */
+
 .Profile {
     width: 100%;
     max-width: 780px;
     margin: 0 auto;
-    padding: 28px 20px;
+    padding: var(--space-4) 0;
     display: flex;
     flex-direction: column;
-    gap: 28px;
+    gap: var(--space-6);
+}
+
+/* Stagger animation for profile posts */
+.Profile > .Post:nth-child(2) { animation-delay: 0ms; }
+.Profile > .Post:nth-child(3) { animation-delay: 50ms; }
+.Profile > .Post:nth-child(4) { animation-delay: 100ms; }
+.Profile > .Post:nth-child(5) { animation-delay: 150ms; }
+.Profile > .Post:nth-child(6) { animation-delay: 200ms; }
+.Profile > .Post:nth-child(7) { animation-delay: 250ms; }
+.Profile > .Post:nth-child(8) { animation-delay: 300ms; }
+.Profile > .Post:nth-child(9) { animation-delay: 350ms; }
+.Profile > .Post:nth-child(10) { animation-delay: 400ms; }
+
+/* =====================================================
+   RESPONSIVE
+   ===================================================== */
+@media (max-width: 768px) {
+    .Profile {
+        padding: var(--space-2) 0;
+        gap: var(--space-4);
+    }
 }

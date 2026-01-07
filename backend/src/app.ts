@@ -57,8 +57,8 @@ export async function start() {
     // synchronize database schema (not data) changes to the database
     // i.e syncs our TypeScript models folder into the actual SQL Schema
     // sequelize.sync({ force: true })
-    // await sequelize.sync({ force: process.argv[2] === 'sync' })
-    await sequelize.sync({ alter: true })
+    await sequelize.sync({ force: process.argv[2] === 'sync' })
+    // await sequelize.sync({ alter: true })
 
     await createAppBucketIfNotExists()
     // testUpload()

@@ -11,7 +11,6 @@ import AuthContext from '../../auth/auth/AuthContext';
 export default function Layout() {
 
     const authContext = useContext(AuthContext);
-
     const isLoggedIn = !!authContext?.jwt;
 
     return (
@@ -21,15 +20,24 @@ export default function Layout() {
                 <header>
                     <Header />
                 </header>
-                <aside>
-                    <Following />
+                
+                {/* Desktop: 3-column layout */}
+                <aside className="sidebar sidebar-left">
+                    <div className="sidebar-section">
+                        <Following />
+                    </div>
                 </aside>
-                <aside>
-                    <Followers />
-                </aside>
-                <main>
+                
+                <main className="main-content">
                     <Main />
                 </main>
+                
+                <aside className="sidebar sidebar-right">
+                    <div className="sidebar-section">
+                        <Followers />
+                    </div>
+                </aside>
+                
                 <footer>
                     <Footer />
                 </footer>

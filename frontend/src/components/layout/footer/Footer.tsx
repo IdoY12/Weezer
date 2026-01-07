@@ -7,7 +7,11 @@ export default function Footer() {
 
     return (
         <div className='Footer'>
-            (c) copyrights Wizzer | you are {name} |Server address: {import.meta.env.VITE_REST_SERVER_URL}
+            <span className="footer-brand">© 2026 Weezer</span>
+            <span className="footer-divider">•</span>
+            <span className="footer-user">Logged in as <strong>{name}</strong></span>
+            <span className="footer-divider">•</span>
+            <span className="footer-server">Server: {import.meta.env.VITE_REST_SERVER_URL}</span>
         </div>
     );
 }

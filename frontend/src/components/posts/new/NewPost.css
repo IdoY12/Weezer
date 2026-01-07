@@ -1,149 +1,300 @@
+/* =====================================================
+   NEW POST FORM
+   Dark theme with gradient accents
+   ===================================================== */
+
 .NewPost {
     width: 100%;
-    max-width: 560px;
-    margin: 40px auto;
-    padding: 40px 36px;
-    background: #ffffff;
-    border-radius: 28px;
-    border: 1px solid #e5e7eb;
-    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.06);
-    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", sans-serif;
-    transition: box-shadow 0.25s ease;
+    max-width: 100%;
+    background: var(--gradient-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    padding: var(--space-6);
+    box-shadow: var(--shadow-lg), var(--shadow-inset);
+    animation: fadeInUp var(--transition-slow) ease-out;
+    position: relative;
+    overflow: hidden;
 }
 
-.NewPost:hover {
-    box-shadow: 0 10px 34px rgba(0, 0, 0, 0.08);
+/* Decorative corner accent */
+.NewPost::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 150px;
+    height: 150px;
+    background: radial-gradient(circle at top right, var(--color-primary-glow) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+/* Form Header (visual only) */
+.NewPost::after {
+    content: '✍️ Create Post';
+    position: absolute;
+    top: var(--space-6);
+    left: var(--space-6);
+    font-size: var(--text-lg);
+    font-weight: var(--font-bold);
+    color: var(--color-text-primary);
+    pointer-events: none;
 }
 
 .NewPost form {
     display: flex;
     flex-direction: column;
-    gap: 22px;
+    gap: var(--space-5);
+    padding-top: var(--space-10);
+    position: relative;
+    z-index: 1;
 }
 
-/* Modern Inputs / Textarea */
+/* =====================================================
+   INPUT STYLES
+   ===================================================== */
 .NewPost input[type="text"],
-.NewPost textarea,
-.NewPost input[type="file"] {
+.NewPost input:not([type]),
+.NewPost textarea {
     width: 100%;
-    padding: 16px 18px;
-    border-radius: 16px;
-    background: #f9fafb;
-    border: 1.8px solid #d3d7e0;
-    font-size: 16px;
-    line-height: 1.4;
-    color: #0f172a;
+    padding: var(--space-4);
+    font-size: var(--text-base);
+    font-family: var(--font-primary);
+    color: var(--color-text-primary);
+    background: var(--color-bg-secondary);
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    transition: all var(--transition-base);
     box-sizing: border-box;
-    transition: border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
-    font-family: inherit;
 }
 
-/* Special outline for Title input */
-.NewPost input[type="text"] {
-    border-color: #c7d2fe;
+.NewPost input[type="text"]::placeholder,
+.NewPost input:not([type])::placeholder,
+.NewPost textarea::placeholder {
+    color: var(--color-text-muted);
 }
 
-/* Focus modern glow */
+.NewPost input[type="text"]:hover,
+.NewPost input:not([type]):hover,
+.NewPost textarea:hover {
+    border-color: var(--color-bg-elevated);
+}
+
 .NewPost input[type="text"]:focus,
-.NewPost textarea:focus,
-.NewPost input[type="file"]:focus {
-    border-color: #6366f1;
-    background: #ffffff;
-    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.18);
+.NewPost input:not([type]):focus,
+.NewPost textarea:focus {
     outline: none;
+    border-color: var(--color-primary);
+    background: var(--color-bg-tertiary);
+    box-shadow: 0 0 0 4px var(--color-primary-glow);
 }
 
-/* Locked textarea (no stretching), scroll if long text */
+/* Title input - special accent */
+.NewPost input[type="text"]:first-of-type,
+.NewPost input:not([type]):first-of-type {
+    font-size: var(--text-lg);
+    font-weight: var(--font-semibold);
+}
+
+/* Textarea */
 .NewPost textarea {
     min-height: 150px;
-    resize: none; /* prevents drag resize */
-    width: 100%;
-    max-width: 100%;
-    overflow-y: auto; /* scrolls if text is long */
+    max-height: 300px;
+    resize: vertical;
+    line-height: 1.6;
 }
 
-/* Error text */
-.formError {
-    font-size: 13px;
-    font-weight: 600;
-    color: #dc2626;
-    padding-left: 4px;
-    margin-top: -12px;
+/* =====================================================
+   FILE INPUT
+   ===================================================== */
+.NewPost input[type="file"] {
+    width: 100%;
+    padding: var(--space-4);
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+    background: var(--color-bg-secondary);
+    border: 2px dashed var(--color-border);
+    border-radius: var(--radius-lg);
+    cursor: pointer;
+    transition: all var(--transition-base);
 }
 
-/* Image preview */
-.imagePreviewWrapper {
-    width: 100%;
-    height: 220px;
-    border-radius: 20px;
-    border: 1px solid #e5e7eb;
-    background: #f8fafc;
+.NewPost input[type="file"]:hover {
+    border-color: var(--color-primary);
+    background: rgba(255, 107, 107, 0.05);
+}
+
+.NewPost input[type="file"]:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 4px var(--color-primary-glow);
+}
+
+.NewPost input[type="file"]::file-selector-button {
+    padding: var(--space-2) var(--space-4);
+    margin-right: var(--space-3);
+    font-size: var(--text-sm);
+    font-weight: var(--font-semibold);
+    font-family: var(--font-primary);
+    color: white;
+    background: var(--gradient-primary);
+    border: none;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: all var(--transition-base);
+}
+
+.NewPost input[type="file"]::file-selector-button:hover {
+    box-shadow: var(--shadow-glow-primary);
+}
+
+/* =====================================================
+   IMAGE PREVIEW
+   ===================================================== */
+.NewPost div[style*="marginTop"] {
+    border-radius: var(--radius-lg) !important;
+    border: 2px solid var(--color-border) !important;
+    overflow: hidden;
+    animation: scaleIn var(--transition-base) ease-out;
+}
+
+.NewPost div[style*="marginTop"] img {
+    display: block;
+}
+
+/* =====================================================
+   ERROR MESSAGE
+   ===================================================== */
+.NewPost .formError {
+    color: var(--color-error);
+    font-size: var(--text-sm);
+    font-weight: var(--font-medium);
+    margin-top: calc(var(--space-2) * -1);
+    padding-left: var(--space-2);
     display: flex;
     align-items: center;
-    justify-content: center;
+    gap: var(--space-2);
+}
+
+.NewPost .formError::before {
+    content: '⚠';
+    font-size: var(--text-xs);
+}
+
+/* =====================================================
+   SUBMIT BUTTON
+   ===================================================== */
+.NewPost button,
+.NewPost .SpinnerButton button {
+    width: 100%;
+    padding: var(--space-4) var(--space-6);
+    font-size: var(--text-base);
+    font-weight: var(--font-bold);
+    font-family: var(--font-primary);
+    color: white;
+    background: var(--gradient-primary);
+    border: none;
+    border-radius: var(--radius-lg);
+    cursor: pointer;
+    transition: all var(--transition-base);
+    box-shadow: var(--shadow-md), var(--shadow-glow-primary);
+    position: relative;
     overflow: hidden;
 }
 
-.imagePreviewWrapper img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+.NewPost button::before,
+.NewPost .SpinnerButton button::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(rgba(255,255,255,0.2), transparent);
+    opacity: 0;
+    transition: opacity var(--transition-fast);
 }
 
-.imagePreviewWrapper span {
-    color: #9ca3af;
-    font-size: 14px;
-}
-
-/* Button */
-.NewPost button,
-.NewPost .SpinnerButton button {
-    margin-top: 8px;
-    width: 100%;
-    padding: 14px 20px;
-    border-radius: 16px;
-    font-size: 15px;
-    font-weight: 600;
-    color: white;
-    background: linear-gradient(135deg, #2563eb, #3b82f6);
-    border: none;
-    box-shadow: 0 4px 14px rgba(37, 99, 235, 0.3);
-    transition: box-shadow 0.2s ease, transform 0.2s ease;
+.NewPost button:hover::before,
+.NewPost .SpinnerButton button:hover::before {
+    opacity: 1;
 }
 
 .NewPost button:hover,
 .NewPost .SpinnerButton button:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 6px 18px rgba(37, 99, 235, 0.35);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg), 0 0 40px var(--color-primary-glow);
 }
 
 .NewPost button:active,
 .NewPost .SpinnerButton button:active {
     transform: translateY(0);
-    box-shadow: 0 3px 10px rgba(37, 99, 235, 0.25);
 }
 
 .NewPost button:disabled,
 .NewPost .SpinnerButton button:disabled {
-    background: #cbd5e1;
+    background: var(--color-bg-elevated);
     box-shadow: none;
-    cursor: default;
+    cursor: not-allowed;
+    opacity: 0.6;
 }
 
-/* Mobile */
+/* Loading state */
+.NewPost .SpinnerButton span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    color: var(--color-text-secondary);
+    font-size: var(--text-sm);
+}
+
+.NewPost .SpinnerButton span img {
+    width: 20px;
+    height: 20px;
+}
+
+/* =====================================================
+   RESPONSIVE
+   ===================================================== */
+@media (max-width: 768px) {
+    .NewPost {
+        padding: var(--space-5);
+        border-radius: var(--radius-lg);
+    }
+    
+    .NewPost::after {
+        font-size: var(--text-base);
+        top: var(--space-5);
+        left: var(--space-5);
+    }
+    
+    .NewPost form {
+        gap: var(--space-4);
+        padding-top: var(--space-8);
+    }
+    
+    .NewPost input[type="text"],
+    .NewPost input:not([type]),
+    .NewPost textarea {
+        padding: var(--space-3);
+        font-size: var(--text-sm);
+    }
+    
+    .NewPost textarea {
+        min-height: 120px;
+    }
+}
+
 @media (max-width: 480px) {
     .NewPost {
-        padding: 28px 20px;
-        border-radius: 24px;
+        padding: var(--space-4);
     }
-
-    .NewPost input,
-    .NewPost textarea {
-        font-size: 15px;
-        padding: 14px 16px;
+    
+    .NewPost::before {
+        width: 100px;
+        height: 100px;
     }
-
-    .imagePreviewWrapper {
-        height: 190px;
+    
+    .NewPost button,
+    .NewPost .SpinnerButton button {
+        padding: var(--space-3) var(--space-4);
+        font-size: var(--text-sm);
     }
 }
