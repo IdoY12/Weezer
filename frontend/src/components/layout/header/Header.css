@@ -273,10 +273,7 @@
         display: none; /* Hide text labels on mobile, show icons only */
     }
     
-    /* Hide AI Translate on mobile to save space - keep 4 main items */
-    .nav-link-translate {
-        display: none;
-    }
+    /* AI Translate is visible on mobile - users need access to translations */
     
     .nav-link.active::after {
         display: none;

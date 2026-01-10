@@ -12,6 +12,105 @@
 }
 
 /* =====================================================
+   TRANSLATION HEADER SECTION
+   Beautiful typography and layout
+   ===================================================== */
+.translation-header {
+    margin-bottom: var(--space-8);
+    text-align: center;
+    animation: fadeInUp var(--transition-base) ease-out 0.2s both;
+}
+
+.translation-title {
+    font-family: var(--font-primary);
+    font-size: var(--text-3xl);
+    font-weight: var(--font-extrabold);
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin: 0 0 var(--space-6) 0;
+    letter-spacing: -0.5px;
+    line-height: 1.2;
+    position: relative;
+    display: inline-block;
+}
+
+.translation-title::after {
+    content: '';
+    position: absolute;
+    bottom: -var(--space-2);
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 4px;
+    background: var(--gradient-primary);
+    border-radius: var(--radius-full);
+    opacity: 0.6;
+}
+
+.translation-description {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.translation-intro,
+.translation-benefit {
+    font-size: var(--text-base);
+    line-height: 1.7;
+    color: var(--color-text-secondary);
+    margin: 0;
+    font-weight: var(--font-medium);
+}
+
+.translation-intro {
+    color: var(--color-text-primary);
+    font-size: var(--text-lg);
+}
+
+.translation-intro .highlight {
+    color: var(--color-accent);
+    font-weight: var(--font-bold);
+    position: relative;
+    display: inline-block;
+}
+
+.translation-intro .highlight::after {
+    content: '';
+    position: absolute;
+    bottom: 2px;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--color-accent) 0%, transparent 100%);
+    opacity: 0.4;
+    border-radius: var(--radius-full);
+}
+
+.translation-benefit {
+    color: var(--color-text-secondary);
+    font-size: var(--text-base);
+    padding: var(--space-4);
+    background: var(--color-bg-tertiary);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    border-left: 3px solid var(--color-accent);
+    position: relative;
+}
+
+.translation-benefit::before {
+    content: '✨';
+    position: absolute;
+    left: var(--space-4);
+    top: var(--space-4);
+    font-size: var(--text-lg);
+    opacity: 0.6;
+}
+
+/* =====================================================
    PAYMENT CARD WRAPPER
    ===================================================== */
 .Translations > div:has(form) {
@@ -169,6 +268,36 @@
 @media (max-width: 640px) {
     .Translations {
         padding: var(--space-4) 0;
+    }
+    
+    .translation-header {
+        margin-bottom: var(--space-6);
+        padding: 0 var(--space-4);
+    }
+    
+    .translation-title {
+        font-size: var(--text-2xl);
+        margin-bottom: var(--space-4);
+    }
+    
+    .translation-description {
+        gap: var(--space-3);
+    }
+    
+    .translation-intro {
+        font-size: var(--text-base);
+    }
+    
+    .translation-benefit {
+        padding: var(--space-3);
+        font-size: var(--text-sm);
+        padding-left: var(--space-8);
+    }
+    
+    .translation-benefit::before {
+        left: var(--space-3);
+        top: var(--space-3);
+        font-size: var(--text-base);
     }
     
     .Translations > div:has(form) {
