@@ -2,6 +2,7 @@ declare enum SocketMessages {
     NewPost = "NewPost",
     NewFollow = "NewFollow",
     NewUnfollow = "NewUnfollow",
-    NewComment = "NewComment"
+    NewComment = "NewComment",
+    ProfilePictureUpdated = "ProfilePictureUpdated"
 }
 export default SocketMessages;

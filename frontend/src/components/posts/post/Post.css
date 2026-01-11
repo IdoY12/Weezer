@@ -58,12 +58,17 @@
 /* =====================================================
    POST META - Date and Author
    ===================================================== */
-.Post > div:nth-of-type(2) {
+.Post > div:nth-of-type(2),
+.post-author {
     display: flex;
     align-items: center;
     gap: var(--space-3);
     font-size: var(--text-sm);
     color: var(--color-text-muted);
+}
+
+.post-author {
+    gap: var(--space-2);
 }
 
 .Post > div:nth-of-type(2)::before {

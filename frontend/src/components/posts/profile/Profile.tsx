@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import './Profile.css';
 import Post from '../post/Post';
 import NewPost from '../new/NewPost';
@@ -18,18 +18,23 @@ export default function Profile() {
     const newPost = useAppSelector(state => state.profileSlice.newPost);
     const profile = useAppSelector(state => state.profileSlice.posts);
     const dispatch = useAppDispatcher();
+    const [isLoading, setIsLoading] = useState<boolean>(profile.length === 0);
 
     useEffect(() => {
         (async () => {
             try {
                 if (profile.length === 0) {
+                    setIsLoading(true);
                     const profileFromServer = await profileService.getProfile();
                     dispatch(init(profileFromServer));
                 }
             } catch (e) {
                 alert(e);
+            } finally {
+                setIsLoading(false);
             }
         })();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [dispatch, profile.length]);
 
     useEffect(() => {
@@ -42,7 +47,9 @@ export default function Profile() {
 
     return (
         <div className='Profile'>
-            {profile.length > 0 && <>
+            {isLoading && <Spinner />}
+            
+            {!isLoading && <>
                 <NewPost />
                 {newPost && <Post
                     key={newPost.id}
@@ -55,8 +62,12 @@ export default function Profile() {
                     post={post}
                     isEditAllowed={true}
                 />)}
+                {profile.length === 0 && !newPost && (
+                    <div className="empty-state">
+                        <p>You haven't posted anything yet. Create your first post!</p>
+                    </div>
+                )}
             </>}
-            {profile.length === 0 && <Spinner />}
         </div>
     );
 }

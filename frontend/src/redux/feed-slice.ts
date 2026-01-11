@@ -26,10 +26,36 @@ export const feedSlice = createSlice({
         },
         indicateNewContentAvailable: (state) => {
             state.isNewContentAvailable = true;
+        },
+        newPost: (state, action: PayloadAction<Post>) => {
+            // Add new post to feed if it's from a followed user
+            // Check if post already exists (avoid duplicates)
+            const postExists = state.posts.find(p => p.id === action.payload.id);
+            if (!postExists) {
+                // Add to beginning of feed (newest first)
+                state.posts = [action.payload, ...state.posts];
+                state.isNewContentAvailable = false;
+            }
+        },
+        updateUserProfilePicture: (state, action: PayloadAction<{ userId: string, profilePicture: string | null }>) => {
+            // Update post authors
+            state.posts.forEach(post => {
+                if (post.user.id === action.payload.userId) {
+                    post.user.profilePicture = action.payload.profilePicture;
+                }
+            });
+            // Update comment authors
+            state.posts.forEach(post => {
+                post.comments.forEach(comment => {
+                    if (comment.user.id === action.payload.userId) {
+                        comment.user.profilePicture = action.payload.profilePicture;
+                    }
+                });
+            });
         }
     }
 });
 
-export const { init, newComment, indicateNewContentAvailable } = feedSlice.actions;
+export const { init, newComment, indicateNewContentAvailable, updateUserProfilePicture, newPost } = feedSlice.actions;
 
 export default feedSlice.reducer;

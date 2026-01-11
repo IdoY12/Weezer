@@ -7,6 +7,7 @@ import { deletePost } from '../../../redux/profile-slice';
 import useService from '../../../hooks/use-service';
 import ProfileService from '../../../services/auth-aware/ProfileService';
 import getImageUrl from '../../../hooks/use-image';
+import ProfilePicture from '../../common/profile-picture/ProfilePicture';
 
 interface PostProps {
     post: PostModel,
@@ -19,14 +20,14 @@ export default function Post(props: PostProps) {
     const {
         title,
         createdAt,
-        user: {
-            name
-        },
+        user,
         body,
         id,
         imageUrl,
         comments
     } = props.post;
+
+    const { name } = user;
 
     const { isEditAllowed, isNew } = props;
 
@@ -58,7 +59,10 @@ export default function Post(props: PostProps) {
     return (
         <div className={className}>
             <div><h3>{title}</h3></div>
-            <div>{(new Date(createdAt)).toLocaleDateString()} by {name}</div>
+            <div className="post-author">
+                <ProfilePicture user={user} size={32} />
+                <span>{(new Date(createdAt)).toLocaleDateString()} by {name}</span>
+            </div>
             <div>{body}</div>
             {image && <div><img src={`${image}`} /></div>}
             {/* conditional rendering (render something depending on a boolean value):  */}

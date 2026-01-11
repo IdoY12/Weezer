@@ -25,8 +25,15 @@
 }
 
 /* Comment meta - author and date */
+.comment-author {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    margin-bottom: var(--space-2);
+}
+
 .PostComment h6 {
-    margin: 0 0 var(--space-2) 0;
+    margin: 0;
     font-size: var(--text-xs);
     font-weight: var(--font-semibold);
     color: var(--color-text-muted);

@@ -19,7 +19,42 @@ export async function signup(req: Request, res: Response, next: NextFunction) {
         delete plainData.password
         const jwt = sign(plainData, jwtSecret)
         res.json({ jwt })
-    } catch (e) {
+    } catch (e: any) {
+        // Handle Sequelize unique constraint errors
+        if (e.name === 'SequelizeUniqueConstraintError') {
+            const errors = e.errors || []
+            const field = errors[0]?.path || ''
+            
+            if (field === 'username') {
+                return next({
+                    status: 422,
+                    message: 'Username already exists. Please choose a different username.'
+                })
+            } else if (field === 'email') {
+                return next({
+                    status: 422,
+                    message: 'Email already exists. Please use a different email address.'
+                })
+            } else {
+                return next({
+                    status: 422,
+                    message: 'A user with this information already exists.'
+                })
+            }
+        }
+        
+        // Handle other Sequelize validation errors
+        if (e.name === 'SequelizeValidationError') {
+            const errors = e.errors || []
+            const firstError = errors[0]
+            if (firstError) {
+                return next({
+                    status: 422,
+                    message: firstError.message || 'Validation error'
+                })
+            }
+        }
+        
         next(e)
     }
 }

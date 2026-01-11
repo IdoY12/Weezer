@@ -54,6 +54,10 @@ export default class User extends Model {
     @Column(DataType.BOOLEAN)
     isPay: boolean
 
+    @AllowNull(true)
+    @Column(DataType.STRING)
+    profilePicture: string | null
+
     @HasMany(() => Post, {
         onDelete: 'CASCADE',
         onUpdate: 'CASCADE'

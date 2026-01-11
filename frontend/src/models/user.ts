@@ -2,5 +2,6 @@ export default interface User {
     id: string,
     name: string,
     username: string,
-    isPay: boolean
+    isPay: boolean,
+    profilePicture?: string | null
 }

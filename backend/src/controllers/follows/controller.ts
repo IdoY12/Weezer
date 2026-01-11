@@ -2,7 +2,6 @@ import { NextFunction, Request, Response } from "express";
 import User from "../../models/User";
 import Follow from "../../models/Follow";
 import socket from "../../io/io";
-import SocketMessages from "socket-enums-idoyahav";
 
 export async function getFollowing(req: Request, res: Response, next: NextFunction) {
     try {
@@ -58,11 +57,18 @@ export async function follow(req: Request<{ id: string }>, res: Response, next: 
         const followee = (await User.findByPk(req.params.id)).get({plain: true})
         const follower = (await User.findByPk(req.userId)).get({plain: true})
 
-        socket.emit(SocketMessages.NewFollow, {
+        const followPayload = {
             from: req.get('x-client-id'),
             followee,
             follower
-        })
+        }
+        
+        console.log(`📤 Backend emitting NewFollow:`)
+        console.log(`   Followee ID: ${followee.id} (type: ${typeof followee.id})`)
+        console.log(`   Follower ID: ${follower.id} (type: ${typeof follower.id})`)
+        console.log(`   Client ID (from): ${followPayload.from}`)
+        console.log(`   Full payload:`, JSON.stringify(followPayload, null, 2))
+        socket.emit('NewFollow', followPayload)
 
     } catch (e) {
         if (e.message === 'follow already exists') return next({
@@ -90,11 +96,18 @@ export async function unfollow(req: Request<{ id: string }>, res: Response, next
         const followee = (await User.findByPk(req.params.id)).get({plain: true})
         const follower = (await User.findByPk(req.userId)).get({plain: true})
 
-        socket.emit(SocketMessages.NewUnfollow, {
+        const unfollowPayload = {
             from: req.get("x-client-id"),
             follower,
             followee
-        })
+        }
+        
+        console.log(`📤 Backend emitting NewUnfollow:`)
+        console.log(`   Followee ID: ${followee.id} (type: ${typeof followee.id})`)
+        console.log(`   Follower ID: ${follower.id} (type: ${typeof follower.id})`)
+        console.log(`   Client ID (from): ${unfollowPayload.from}`)
+        console.log(`   Full payload:`, JSON.stringify(unfollowPayload, null, 2))
+        socket.emit('NewUnfollow', unfollowPayload)
     } catch (e) {
         console.log(e)
         if (e.message === 'followee not found') return next({

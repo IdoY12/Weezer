@@ -8,14 +8,17 @@ const server = new Server({
 })
 
 server.on('connection', socket => {
-    console.log('client connected...')
+    console.log(`✅ Client connected - Socket ID: ${socket.id}`)
 
     socket.onAny((eventName: string, payload: any) => {
-        console.log(`received event ${eventName} with payload:`, payload)
+        console.log(`📥 IO server received event: ${eventName}`, payload)
+        console.log(`📤 IO server broadcasting event: ${eventName} to all clients`)
         server.emit(eventName, payload)
     })
 
-    socket.on('disconnect', () => console.log('client disconnected...'))
+    socket.on('disconnect', (reason) => {
+        console.log(`⚠️ Client disconnected - Socket ID: ${socket.id}, Reason: ${reason}`)
+    })
 })
 
 server.listen(config.get('port'))

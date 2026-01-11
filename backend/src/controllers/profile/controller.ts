@@ -3,7 +3,6 @@ import Post from "../../models/Post";
 import User from "../../models/User";
 import postIncludes from "../common/post-includes";
 import socket from "../../io/io";
-import SocketMessages from "socket-enums-idoyahav"
 
 export async function getProfile(req: Request, res: Response, next: NextFunction) {
 
@@ -57,10 +56,13 @@ export async function createPost(req: Request, res: Response, next: NextFunction
         res.json(newPost)
 
         // here i want to send the io server a message
-        socket.emit(SocketMessages.NewPost, {
+        const newPostPayload = {
             from: req.get('x-client-id') || 'stam',
             post: newPost
-        })
+        }
+        
+        console.log(`📤 Backend emitting NewPost:`, newPostPayload)
+        socket.emit('NewPost', newPostPayload)
 
     } catch (e) {
         next(e)

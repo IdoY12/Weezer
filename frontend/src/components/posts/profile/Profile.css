@@ -25,6 +25,23 @@
 .Profile > .Post:nth-child(10) { animation-delay: 400ms; }
 
 /* =====================================================
+   EMPTY STATE
+   ===================================================== */
+.empty-state {
+    text-align: center;
+    padding: var(--space-16) var(--space-6);
+    color: var(--color-text-secondary);
+    font-size: var(--text-base);
+    line-height: 1.6;
+}
+
+.empty-state p {
+    margin: 0;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+/* =====================================================
    RESPONSIVE
    ===================================================== */
 @media (max-width: 768px) {

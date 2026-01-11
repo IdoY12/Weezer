@@ -26,7 +26,7 @@ export default function Auth(props: PropsWithChildren) {
     const decoded = useMemo(() => {
         if(!jwt) return
         return jwtDecode(jwt) as User
-    }, [])
+    }, [jwt])
 
     const isPay = decoded?.isPay ?? false
 

@@ -41,10 +41,30 @@ export const profileSlice = createSlice({
                 state.posts = [state.newPost, ...state.posts];
                 state.newPost = undefined;
             }
+        },
+        updateUserProfilePicture: (state, action: PayloadAction<{ userId: string, profilePicture: string | null }>) => {
+            // Update post authors
+            state.posts.forEach(post => {
+                if (post.user.id === action.payload.userId) {
+                    post.user.profilePicture = action.payload.profilePicture;
+                }
+            });
+            // Update newPost author if applicable
+            if (state.newPost && state.newPost.user.id === action.payload.userId) {
+                state.newPost.user.profilePicture = action.payload.profilePicture;
+            }
+            // Update comment authors
+            state.posts.forEach(post => {
+                post.comments.forEach(comment => {
+                    if (comment.user.id === action.payload.userId) {
+                        comment.user.profilePicture = action.payload.profilePicture;
+                    }
+                });
+            });
         }
     }
 });
 
-export const { init, newPost, updatePost, newComment, deletePost, postAged } = profileSlice.actions;
+export const { init, newPost, updatePost, newComment, deletePost, postAged, updateUserProfilePicture } = profileSlice.actions;
 
 export default profileSlice.reducer;

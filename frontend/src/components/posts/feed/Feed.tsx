@@ -19,20 +19,25 @@ export default function Feed() {
     const isNewContentAvailable = useAppSelector(state => state.feedSlice.isNewContentAvailable);
     const dispatch = useAppDispatcher();
     const [isRefreshing, setIsRefreshing] = useState<boolean>(false);
+    const [isLoading, setIsLoading] = useState<boolean>(feed.length === 0);
 
     useEffect(() => {
 
         (async () => {
             try {
                 if (feed.length === 0) {
+                    setIsLoading(true);
                     const feedFromServer = await feedService.getFeed();
                     dispatch(init(feedFromServer));
                 }
             } catch (e) {
                 alert(e);
+            } finally {
+                setIsLoading(false);
             }
         })();
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [dispatch, feed.length]);
 
 
@@ -50,8 +55,9 @@ export default function Feed() {
 
     return (
         <div className='Feed'>
-            {feed.length > 0 && <>
-
+            {isLoading && <Spinner />}
+            
+            {!isLoading && feed.length > 0 && <>
                 {isNewContentAvailable && <div className='info-box'>
                     you have new content available, please refresh <SpinnerButton
                         buttonText='refresh'
@@ -68,7 +74,11 @@ export default function Feed() {
                 />)}
             </>}
 
-            {feed.length === 0 && <Spinner />}
+            {!isLoading && feed.length === 0 && (
+                <div className="empty-state">
+                    <p>No posts yet. Follow some users to see their posts in your feed!</p>
+                </div>
+            )}
         </div>
     );
 }

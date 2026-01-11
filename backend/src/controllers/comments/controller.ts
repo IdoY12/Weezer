@@ -2,7 +2,6 @@ import { NextFunction, Request, Response } from "express";
 import Comment from "../../models/Comment";
 import User from "../../models/User";
 import socket from "../../io/io";
-import SocketMessages from "socket-enums-idoyahav";
 
 export async function newComment(req: Request<{ postId: string }>, res: Response, next: NextFunction) {
 
@@ -16,11 +15,14 @@ export async function newComment(req: Request<{ postId: string }>, res: Response
         })
         res.json(newComment)
         
-        socket.emit(SocketMessages.NewComment, {
+        const newCommentPayload = {
             from: req.get("x-client-id"),
             postId: newComment.postId,
             newComment
-        })
+        }
+        
+        console.log(`📤 Backend emitting NewComment:`, newCommentPayload)
+        socket.emit('NewComment', newCommentPayload)
     } catch (e) {
         next(e)
     }

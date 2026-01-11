@@ -6,6 +6,8 @@ import EditPost from "../../posts/edit/EditPost";
 import Translations from "../../translations/Translation";
 import Following from "../../follows/following/Following";
 import Followers from "../../follows/followers/Followers";
+import Search from "../../search/Search";
+import Settings from "../../settings/Settings";
 
 export default function Main() {
     return (
@@ -17,7 +19,11 @@ export default function Main() {
             <Route path="/feed" element={<Feed />} />
             <Route path="/following" element={<Following />} />
             <Route path="/followers" element={<Followers />} />
+            <Route path="/search" element={<Search />} />
             <Route path="/translations" element={<Translations />} />
+            <Route path="/settings" element={<Settings />} />
+            <Route path="/signup" element={<Navigate to="/profile" />} />
+            <Route path="/login" element={<Navigate to="/profile" />} />
             <Route path="*" element={<NotFound />} />
         </Routes>
     );

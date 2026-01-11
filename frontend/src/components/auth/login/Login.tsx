@@ -1,4 +1,5 @@
 import { useContext, useState } from 'react';
+import { Link } from 'react-router-dom';
 import SpinnerButton from '../../common/spinner-button/SpinnerButton';
 import './Login.css';
 import { useForm } from 'react-hook-form';
@@ -79,6 +80,12 @@ export default function Login() {
                         loadingText='Signing in...'
                         isSubmitting={isSubmitting}
                     />
+
+                    <div className="login-footer">
+                        <p>
+                            Don't have an account? <Link to="/signup">Sign up</Link>
+                        </p>
+                    </div>
                 </form>
             </div>
         </div>

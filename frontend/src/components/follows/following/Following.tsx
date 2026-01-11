@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 import './Following.css';
 import Follow from '../follow/Follow';
-import Spinner from '../../common/spinner/Spinner';
 import { useAppDispatcher, useAppSelector } from '../../../redux/hooks';
 import { init } from '../../../redux/following-slice';
 import useService from '../../../hooks/use-service';
@@ -23,6 +22,7 @@ export default function Following() {
                 alert(e);
             }
         })();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [dispatch]);
 
     return (
@@ -35,7 +35,11 @@ export default function Following() {
                 />)}
             </>}
 
-            {following.length === 0 && <Spinner />}
+            {following.length === 0 && (
+                <div className="empty-state">
+                    <p>You're not following anyone yet. Search for users to follow!</p>
+                </div>
+            )}
         </div>
     );
 }

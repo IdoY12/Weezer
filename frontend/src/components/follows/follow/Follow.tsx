@@ -7,6 +7,7 @@ import { follow, unfollow } from '../../../redux/following-slice';
 import { indicateNewContentAvailable } from '../../../redux/feed-slice';
 import useService from '../../../hooks/use-service';
 import FollowingService from '../../../services/auth-aware/FollowingService';
+import ProfilePicture from '../../common/profile-picture/ProfilePicture';
 
 interface FollowProps {
     user: User
@@ -54,7 +55,7 @@ export default function Follow(props: FollowProps) {
 
     return (
         <div className='Follow'>
-            <img src="https://static.vecteezy.com/system/resources/previews/036/594/092/non_2x/man-empty-avatar-photo-placeholder-for-social-networks-resumes-forums-and-dating-sites-male-and-female-no-photo-images-for-unfilled-user-profile-free-vector.jpg" />
+            <ProfilePicture user={user} size={50} />
             <div>{name}</div>
             <div>
                 {amIFollowing && <SpinnerButton

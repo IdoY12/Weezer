@@ -2,12 +2,13 @@ import { NavLink } from 'react-router-dom';
 import './Header.css';
 import { useContext } from 'react';
 import AuthContext from '../../auth/auth/AuthContext';
-import useUsername from '../../../hooks/use-username';
+import useCurrentUser from '../../../hooks/use-current-user';
+import ProfilePicture from '../../common/profile-picture/ProfilePicture';
 
 export default function Header() {
     const authContext = useContext(AuthContext);
 
-    const name = useUsername();
+    const { user } = useCurrentUser();
 
     function logout() {
         authContext?.newJwt('');
@@ -40,6 +41,13 @@ export default function Header() {
                     </svg>
                     <span>Feed</span>
                 </NavLink>
+                <NavLink to="/search" className="nav-link">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <circle cx="11" cy="11" r="8" />
+                        <path d="m21 21-4.35-4.35" />
+                    </svg>
+                    <span>Search</span>
+                </NavLink>
                 <NavLink to="/following" className="nav-link">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                         <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
@@ -69,16 +77,27 @@ export default function Header() {
                     </svg>
                     <span>AI Translate</span>
                 </NavLink>
+                <NavLink to="/settings" className="nav-link">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <circle cx="12" cy="12" r="3" />
+                        <path d="M12 1v6m0 6v6M5.64 5.64l4.24 4.24m4.24 4.24l4.24 4.24M1 12h6m6 0h6M5.64 18.36l4.24-4.24m4.24-4.24l4.24-4.24" />
+                    </svg>
+                    <span>Settings</span>
+                </NavLink>
             </nav>
 
             {/* User Section */}
             <div className="header-user">
-                <div className="user-avatar">
-                    {name?.charAt(0).toUpperCase() || 'U'}
-                </div>
+                {user ? (
+                    <ProfilePicture user={user} size={40} />
+                ) : (
+                    <div className="user-avatar">
+                        {user?.name?.charAt(0).toUpperCase() || 'U'}
+                    </div>
+                )}
                 <div className="user-info">
                     <span className="user-greeting">Welcome back</span>
-                    <span className="user-name">{name}</span>
+                    <span className="user-name">{user?.name || 'User'}</span>
                 </div>
                 <button onClick={logout} className="logout-btn" title="Sign out">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">

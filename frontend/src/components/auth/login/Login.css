@@ -304,6 +304,32 @@
 }
 
 /* =====================================================
+   LOGIN FOOTER
+   ===================================================== */
+.login-footer {
+    text-align: center;
+    margin-top: var(--space-4);
+}
+
+.login-footer p {
+    margin: 0;
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+}
+
+.login-footer a {
+    color: var(--color-primary);
+    text-decoration: none;
+    font-weight: var(--font-semibold);
+    transition: color var(--transition-base);
+}
+
+.login-footer a:hover {
+    color: var(--color-primary-glow);
+    text-decoration: underline;
+}
+
+/* =====================================================
    RESPONSIVE
    ===================================================== */
 @media (max-width: 480px) {
