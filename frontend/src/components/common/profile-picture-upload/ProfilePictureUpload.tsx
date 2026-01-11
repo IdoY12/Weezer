@@ -66,7 +66,7 @@ export default function ProfilePictureUpload({ user, onUploadComplete, size = 12
             
             // Update Redux immediately for local state update (socket event will be ignored for current user)
             if (userId) {
-                const updatePayload = { userId, profilePicture: updatedUser.profilePicture };
+                const updatePayload = { userId, profilePicture: updatedUser.profilePicture ?? null };
                 dispatch(profileUpdateUserProfilePicture(updatePayload));
                 dispatch(feedUpdateUserProfilePicture(updatePayload));
                 dispatch(followersUpdateUserProfilePicture(updatePayload));

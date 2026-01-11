@@ -92,7 +92,7 @@ export default function Header() {
                     <ProfilePicture user={user} size={40} />
                 ) : (
                     <div className="user-avatar">
-                        {user?.name?.charAt(0).toUpperCase() || 'U'}
+                        U
                     </div>
                 )}
                 <div className="user-info">
